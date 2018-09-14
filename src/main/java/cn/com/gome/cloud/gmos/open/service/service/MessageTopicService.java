@@ -23,4 +23,8 @@ public class MessageTopicService {
     public List<TopicCategory> findTypeByPlatformId(String platformId) {
         return null;
     }
+
+    public void create(MessageTopic messageTopic) {
+
+    }
 }

@@ -1,19 +1,26 @@
 package cn.com.gome.cloud.gmos.open.service;
 
+import cn.com.gome.cloud.gmos.open.service.domain.AppTopicRelation;
 import cn.com.gome.cloud.gmos.open.service.domain.MessageTopic;
 import cn.com.gome.cloud.gmos.open.service.domain.TopicCategory;
 import cn.com.gome.cloud.gmos.open.service.domain.TopicField;
 import cn.com.gome.cloud.gmos.open.service.service.AppTopicRelationService;
+import cn.com.gome.cloud.gmos.open.service.service.AuthorizationService;
 import cn.com.gome.cloud.gmos.open.service.service.MessageTopicService;
 
 import java.util.List;
 
-public class UnitTest {
 
+/**
+ * 考虑下Topic被创建的情况
+ */
+public class UnitTest {
 
     private MessageTopicService messageTopicService = new MessageTopicService();
 
     private AppTopicRelationService appTopicRelationService = new AppTopicRelationService();
+
+    private AuthorizationService authorizationService = new AuthorizationService();
 
     /**
      * 展示所有的主题类型
@@ -30,6 +37,21 @@ public class UnitTest {
     public void test_list_all_subscribe_topic(){
 
         List<MessageTopic> messageTopics = messageTopicService.findByCategoryId("");
+
+    }
+
+    /**
+     * 创建Topic
+     */
+    public void test_create_topic(){
+
+        MessageTopic messageTopic = new MessageTopic();
+
+        messageTopic.setName("名字");
+        messageTopic.setDescription("描述");
+        messageTopic.setCategoryId("分类ID");
+
+        messageTopicService.create(messageTopic);
 
     }
 
@@ -68,7 +90,19 @@ public class UnitTest {
 
     public void test_list_subscribe_relation(){
         String appId = "";
-        appTopicRelationService.findByApp(appId);
+        List<AppTopicRelation> appTopicRelations = appTopicRelationService.findByApp(appId);
     }
+
+    /**
+     * 授权应用，商家授权给应用，商品接口权限，有效期为1年
+     */
+    public void test_authorize(){
+        String venderId = "";
+        String appId = "";
+        long duration = 1L;
+        String scope = "";
+        authorizationService.authorize(venderId,appId,duration,scope);
+    }
+
 
 }
