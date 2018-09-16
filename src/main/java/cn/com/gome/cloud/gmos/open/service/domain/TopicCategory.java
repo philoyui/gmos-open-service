@@ -5,7 +5,7 @@ import java.io.Serializable;
 /**
  * 订阅主题分类
  */
-public class TopicCategory implements Serializable {
+public class   TopicCategory implements Serializable {
 
     private String id;
 

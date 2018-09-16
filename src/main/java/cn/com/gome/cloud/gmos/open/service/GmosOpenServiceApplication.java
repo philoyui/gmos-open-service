@@ -9,4 +9,5 @@ public class GmosOpenServiceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(GmosOpenServiceApplication.class, args);
 	}
+
 }
